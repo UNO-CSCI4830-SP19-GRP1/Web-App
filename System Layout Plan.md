@@ -6,7 +6,7 @@ This is the rough plan so far. Feel free to add, change, or comment
 ## Landing Page
 - Selection list (check boxes)
 	- Tiered or straight list?
-	- Categories? (restaurants, sports, video game, tabletop game, coffee etc)
+	- Categories? (restaurants, sports, video game, tabletop game, coffee, exercise etc)
 - Submit button
 	
 ## Generated page
