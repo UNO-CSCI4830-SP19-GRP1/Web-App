@@ -1,1 +1,1 @@
-web: sh target/bin/attractionFinder
+web: sh target/bin/webapp
