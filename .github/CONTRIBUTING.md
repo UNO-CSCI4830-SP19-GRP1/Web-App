@@ -41,7 +41,7 @@ If automatic deploying to [Heroku] does not appear to be working, contact the [@
 
 If you would like to test a pull request on [Heroku] before the request is approved, let the [@UNO-CSCI4830-SP19-GRP1/system-architects] know inside the pull request.
 
-[prod-deploy]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/compare/production...development?quick_pull=1&template=production_pull_request_template.md&title=Deploy:%20[ENTER%20TITLE%20HERE]
+[prod-deploy]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/compare/production...development?quick_pull=1&template=production_pull_request_template.md&title=Deploy:%20[ENTER%20TITLE%20HERE]&projects=UNO-CSCI4830-SP19-GRP1/Web-App/1
 [`development`]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/tree/development
 [`production`]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/tree/production
 [Environments]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/deployments
