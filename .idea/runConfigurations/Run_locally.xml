@@ -1,6 +1,6 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Run locally" type="Application" factoryName="Application">
-    <option name="MAIN_CLASS_NAME" value="com.unomaha.ist.csci4830.sp19.grp1.web_app.launch.Main" />
+    <option name="MAIN_CLASS_NAME" value="app.attractionfinder.webapp.Application" />
     <module name="Web App" />
     <method v="2">
       <option name="Make" enabled="true" />

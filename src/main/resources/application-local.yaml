@@ -1,0 +1,9 @@
+spring:
+  devtools:
+    add-properties: true
+logging:
+  level:
+    web: DEBUG
+server:
+  error:
+    include-stacktrace: ALWAYS
