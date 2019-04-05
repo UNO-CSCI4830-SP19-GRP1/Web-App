@@ -13,6 +13,6 @@ public class DatabaseConfig {
 	@Bean
 	@Profile({"local", "ci"}) // Heroku and Spring handle the DEV/PROD database for us.
 	public DataSource localDataSource() {
-		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("testdb;MODE=PostgreSQL").build();
+		return new EmbeddedDatabaseBuilder().setType(EmbeddedDatabaseType.H2).setName("testdb;DATABASE_TO_UPPER=false;MODE=PostgreSQL").build();
 	}
 }
