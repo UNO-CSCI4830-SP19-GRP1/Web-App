@@ -1,4 +1,3 @@
----
 databaseChangeLog:
   - changeSet:
       id: 1
@@ -73,3 +72,38 @@ databaseChangeLog:
                     foreignKeyName: attraction_tag_tag_fkey
                     references: tag(id)
                     deleteCascade: true
+  - changeSet:
+      id: 4
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 1
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 2
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 3
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 4
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 5

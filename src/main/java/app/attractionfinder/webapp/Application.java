@@ -1,9 +1,9 @@
 package app.attractionfinder.webapp;
 
 import app.attractionfinder.webapp.api.ApiConfig;
-import app.attractionfinder.webapp.common.config.DaoConfig;
 import app.attractionfinder.webapp.common.config.DatabaseConfig;
 import app.attractionfinder.webapp.common.config.MvcConfig;
+import app.attractionfinder.webapp.common.config.RepositoryConfig;
 import app.attractionfinder.webapp.ui.UiConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -13,7 +13,7 @@ import org.springframework.context.annotation.Import;
 
 @EnableAutoConfiguration
 @Configuration
-@Import({ApiConfig.class, DaoConfig.class, DatabaseConfig.class, MvcConfig.class, UiConfig.class})
+@Import({ApiConfig.class, RepositoryConfig.class, DatabaseConfig.class, MvcConfig.class, UiConfig.class})
 public class Application {
 	public static void main(final String[] args) {
 		final SpringApplication app = setupApp();

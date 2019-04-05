@@ -1,18 +1,18 @@
 package app.attractionfinder.webapp.ui;
 
-import app.attractionfinder.webapp.common.dao.TagDao;
 import app.attractionfinder.webapp.common.model.Tag;
+import app.attractionfinder.webapp.common.repository.TagRepository;
 
 import java.util.List;
 
 public class UiHandler {
-	private final TagDao tagDao;
+	private final TagRepository tagRepository;
 
-	public UiHandler(final TagDao tagDao) {
-		this.tagDao = tagDao;
+	public UiHandler(final TagRepository tagRepository) {
+		this.tagRepository = tagRepository;
 	}
 
 	public List<Tag> getAllTags() {
-		return this.tagDao.getAll();
+		return this.tagRepository.getAll();
 	}
 }

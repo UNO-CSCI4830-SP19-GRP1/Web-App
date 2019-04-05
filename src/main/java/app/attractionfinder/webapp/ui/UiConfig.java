@@ -1,14 +1,14 @@
 package app.attractionfinder.webapp.ui;
 
-import app.attractionfinder.webapp.common.dao.TagDao;
+import app.attractionfinder.webapp.common.repository.TagRepository;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class UiConfig {
 	@Bean
-	public UiHandler uiHandler(final TagDao tagDao) {
-		return new UiHandler(tagDao);
+	public UiHandler uiHandler(final TagRepository tagRepository) {
+		return new UiHandler(tagRepository);
 	}
 
 	@Bean
