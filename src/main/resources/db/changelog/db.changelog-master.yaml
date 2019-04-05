@@ -1,10 +1,11 @@
+---
 databaseChangeLog:
   - changeSet:
       id: 1
-      author: marceloverdijk
+      author: David C. Bradley
       changes:
         - createTable:
-            tableName: person
+            tableName: attraction
             columns:
               - column:
                   name: id
@@ -14,25 +15,61 @@ databaseChangeLog:
                     primaryKey: true
                     nullable: false
               - column:
-                  name: first_name
-                  type: varchar(255)
+                  name: name
+                  type: varchar(200)
                   constraints:
                     nullable: false
               - column:
-                  name: last_name
-                  type: varchar(255)
+                  name: description
+                  type: clob
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 2
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
                   constraints:
                     nullable: false
   - changeSet:
-      id: 2
-      author: marceloverdijk
+      id: 3
+      author: David C. Bradley
       changes:
-        - insert:
-            tableName: person
+        - createTable:
+            tableName: attraction_tag
             columns:
               - column:
-                  name: first_name
-                  value: Marcel
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
               - column:
-                  name: last_name
-                  value: Overdijk
+                  name: attraction_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_attraction_fkey
+                    references: attraction(id)
+                    deleteCascade: true
+              - column:
+                  name: tag_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_tag_fkey
+                    references: tag(id)
+                    deleteCascade: true
