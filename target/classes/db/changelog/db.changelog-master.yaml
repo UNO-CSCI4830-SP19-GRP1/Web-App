@@ -1,0 +1,109 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: attraction
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: clob
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 2
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: attraction_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_attraction_fkey
+                    references: attraction(id)
+                    deleteCascade: true
+              - column:
+                  name: tag_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_tag_fkey
+                    references: tag(id)
+                    deleteCascade: true
+  - changeSet:
+      id: 4
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 1
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 2
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 3
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 4
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 5
