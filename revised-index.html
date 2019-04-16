@@ -7,12 +7,18 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
   <style>
-  .carousel-inner > .item > img,
-  .carousel-inner > .item > a > img {
-      width: 70%;
-      margin: auto;
-  }
-
+		.carousel-inner > .item > img,
+		.carousel-inner > .item > a > img {
+			width: 70%;
+			margin: auto;
+		}
+		.carousel-indicators li {
+			background-color: #999 !important;
+			background-color: rgba(70,70,70.25) !important;
+		}
+		.carousel-indicators .active {
+			background-color: #444 !important;
+		}
   		body {
 			text-align:center;
 			
@@ -71,23 +77,23 @@
 
 <body>
     <div class="header">
-        <a style="color:white;">Omaha Attraction Finder</a>
+        <h1 style="color:white;">Omaha Attraction Finder</h1>
     </div>
   <!-- Navigation Bar -->
     <div id="navbar">
-		<a class="left active" href="K:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-index.html">Search</a>
-		<a class="right" href="K:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-contacts.html">Contact</a>
-		<a class="right" ref="#URL">Edit</a>
-		<a class="right" href="#">Add</a>
+		<a class="left active" href="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-index.html">Search</a>
+		<a class="right" href="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-contacts.html">Contact</a>
+		<a class="right" href="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-edit.html">Edit</a>
+		<a class="right" href="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-add.html">Add</a>
 		<a class="right" href="#">Login</a>
-		<a class="right" href="K:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-results.html">Results</a>
+		<a class="right" href="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-results.html">Results</a>
     </div>
 <div class='container fluid'>
 
     <!-- carousel -->
       <div class="container">
   <br>
-  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+  <div style="padding:10px;" id="myCarousel" class="carousel slide" data-ride="carousel">
     
     <ol class="carousel-indicators">
       <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
@@ -127,7 +133,7 @@
             <h1>How To Use</h1>
                   <p>Select tags to find local places in Omaha that meet your interests!</p>
     <h1>Attraction Finder</h1>
-<form action="K:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-results.html" id="tagSelection">
+<form action="E:\Apps\OneDrive\1School\Spring19\CSCI_4830_Intro_Software_Engineering\Web_Apps\WebAppThree\test-src\revised-results.html" id="tagSelection">
     <nav>
         <ul id="tagList">
             <li th:each="tag : ${tags}"><!--/* This will loop over the tags list and create each tag */-->
