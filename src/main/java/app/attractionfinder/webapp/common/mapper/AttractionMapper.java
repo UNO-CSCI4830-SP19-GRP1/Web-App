@@ -7,8 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class AttractionMapper implements RowMapper<Attraction> {
-    @Override
-    public Attraction mapRow(final ResultSet rs, final int rowNum) throws SQLException {
-        return new Attraction(rs.getString("id"), rs.getString("name"), rs.getString("description"));
-    }
+	@Override
+	public Attraction mapRow(final ResultSet rs, final int rowNum) throws SQLException {
+		return new Attraction(rs.getString("id"), rs.getString("name"), rs.getString("description"));
+	}
 }
