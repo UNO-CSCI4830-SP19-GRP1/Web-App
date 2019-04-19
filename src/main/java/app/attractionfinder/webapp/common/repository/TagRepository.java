@@ -9,7 +9,7 @@ public interface TagRepository {
 
 	List<Tag> getAll();
 
-	long add(String name);
+	long create(String name);
 
 	boolean delete(long id);
 }

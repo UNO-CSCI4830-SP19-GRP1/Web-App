@@ -1,5 +1,6 @@
 package app.attractionfinder.webapp.api;
 
+import app.attractionfinder.webapp.common.model.Attraction;
 import app.attractionfinder.webapp.common.model.Tag;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
@@ -14,49 +15,36 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiController {
-
 	private ApiHandler apiHandler;
+
 
 	public ApiController(ApiHandler apiHandler) {
 		this.apiHandler = apiHandler;
 	}
 
-	private String tagToJsonString(Tag tag) {
-		return "{" + "\"id\":" + tag.getId() + "," + " \"name\": " + tag.getName() + "}";
-	}
 
 	@GetMapping
 	public String index() {
 		return "{\"message\":\"Hello API\"}";
 	}
 
+
 	@GetMapping("/tags")
-	public String getAllTags() {
-		final List<Tag> tags = this.apiHandler.getTags();
-
-		StringBuilder stringBuilder = new StringBuilder();
-		stringBuilder.append("[");
-		for(Tag tag : tags) {
-			stringBuilder.append(tagToJsonString(tag));
-		}
-		stringBuilder.append("]");
-		return stringBuilder.toString();
-	}
-
-	@GetMapping("/tags/{id}")
-	public String getTag(@PathVariable Long id) {
-		final Tag tag = this.apiHandler.getTag(id);
-		return tagToJsonString(tag);
+	public List<Tag> getAllTags() {
+		return this.apiHandler.getTags();
 	}
 
 	@PostMapping("/tags")
-	public String createTag(@RequestBody String requestJson) throws IOException {
+	public Tag createTag(@RequestBody String requestJson) throws IOException {
 		ObjectMapper mapper = new ObjectMapper();
 		final Tag requestedTag = mapper.readValue(requestJson, Tag.class);
 
-		final Tag newTag = this.apiHandler.addTag(requestedTag);
+		return this.apiHandler.createTag(requestedTag);
+	}
 
-		return tagToJsonString(newTag);
+	@GetMapping("/tags/{id}")
+	public Tag getTag(@PathVariable long id) {
+		return this.apiHandler.getTag(id);
 	}
 
 	@DeleteMapping("tags/{id}")
@@ -69,36 +57,31 @@ public class ApiController {
 
 		// Spring assumes 200 OK if nothing is thrown or returned
 	}
-	//
-	//	@RequestMapping("/attractions")
-	//	public String attractions() {
-	//		return uiController.indexAttractions().toString();
-	//	}
-	//
-	//	@RequestMapping("/attractions/{id}")
-	//	public String attractionbyId(@PathVariable Long id) {
-	//		return uiController.getAttractionById(id).toString();
-	//	}
-	//
-	//	@RequestMapping("attractions/post/{name}/{description}")
-	//	public String addAttraction(@PathVariable String name, @PathVariable String description) {
-	//		boolean result = uiController.addAttraction(name, description);
-	//		if(result) {
-	//			return "{\"message\":\"Successfully Added\"}";
-	//		} else {
-	//			return "{\"message\":\"Failed To Add\"}";
-	//		}
-	//	}
-	//
-	//	@RequestMapping("attractions/delete/{id}")
-	//	public String deleteAttraction(@PathVariable long id) {
-	//		boolean result = uiController.deleteAttraction(id);
-	//		if(result) {
-	//			return "{\"message\":\"Successfully Deleted\"}";
-	//		} else {
-	//			return "{\"message\":\"Failed To Deleted\"}";
-	//		}
-	//	}
+
+
+	@GetMapping("/attractions")
+	public List<Attraction> getAllAttractions() {
+		return this.apiHandler.getAttractions();
+	}
+
+	@PostMapping("/attractions")
+	public Attraction createAttraction(@RequestBody Attraction requestedAttraction) {
+		return this.apiHandler.createAttraction(requestedAttraction);
+	}
+
+	@GetMapping("/attractions/{id}")
+	public Attraction getAttraction(@PathVariable long id) {
+		return this.apiHandler.getAttraction(id);
+	}
+
+	@DeleteMapping("attractions/{id}")
+	public void deleteAttraction(@PathVariable long id) {
+		final boolean deleted = this.apiHandler.deleteAttraction(id);
+
+		if(!deleted) {
+			throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Attraction not found");
+		}
+	}
 }
 
 

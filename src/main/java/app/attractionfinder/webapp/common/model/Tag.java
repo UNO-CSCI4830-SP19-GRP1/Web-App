@@ -1,20 +1,23 @@
 package app.attractionfinder.webapp.common.model;
 
 public class Tag {
-	private final Long id;
-	private final String name;
-
-	public Tag(final Long id, final String name) {
-		this.id = id;
-		this.name = name;
-	}
+	private Long id;
+	private String name;
 
 	public Long getId() {
-		return this.id;
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	@Override

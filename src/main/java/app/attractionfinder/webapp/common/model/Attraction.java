@@ -1,27 +1,32 @@
 package app.attractionfinder.webapp.common.model;
 
 public class Attraction {
+	private Long id;
+	private String name;
+	private String description;
 
-	private final String id;
-	private final String name;
-	private final String description;
-
-	public Attraction(String id, String name, String description) {
-		this.id = id;
-		this.name = name;
-		this.description = description;
+	public Long getId() {
+		return id;
 	}
 
-	public String getId() {
-		return this.id;
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
-		return this.name;
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
 	}
 
 	public String getDescription() {
-		return this.description;
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
 	}
 
 	@Override

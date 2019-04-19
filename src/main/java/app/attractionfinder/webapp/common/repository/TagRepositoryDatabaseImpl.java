@@ -38,7 +38,7 @@ public class TagRepositoryDatabaseImpl implements TagRepository {
 	}
 
 	@Override
-	public long add(String name) {
+	public long create(String name) {
 		final String sql = "INSERT INTO tag (name) VALUES (:name)";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
