@@ -3,18 +3,22 @@ package app.attractionfinder.webapp.api;
 import app.attractionfinder.webapp.common.model.Attraction;
 import app.attractionfinder.webapp.common.model.Tag;
 import app.attractionfinder.webapp.common.repository.AttractionRepository;
+import app.attractionfinder.webapp.common.repository.AttractionTagRepository;
 import app.attractionfinder.webapp.common.repository.TagRepository;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class ApiHandler {
-	private TagRepository tagRepo;
-	private AttractionRepository attractionRepo;
+	private final TagRepository tagRepo;
+	private final AttractionRepository attractionRepo;
+	private final AttractionTagRepository attractionTagRepo;
 
 
-	public ApiHandler(TagRepository tagRepo, AttractionRepository attractionRepo) {
+	public ApiHandler(final TagRepository tagRepo, final AttractionRepository attractionRepo, final AttractionTagRepository attractionTagRepo) {
 		this.tagRepo = tagRepo;
 		this.attractionRepo = attractionRepo;
+		this.attractionTagRepo = attractionTagRepo;
 	}
 
 
@@ -22,16 +26,16 @@ public class ApiHandler {
 		return this.tagRepo.getAll();
 	}
 
-	public Tag getTag(long id) {
+	public Tag getTag(final long id) {
 		return this.tagRepo.get(id);
 	}
 
-	public Tag createTag(Tag newTag) {
+	public Tag createTag(final Tag newTag) {
 		final long newTagId = this.tagRepo.create(newTag.getName());
 		return this.tagRepo.get(newTagId);
 	}
 
-	public boolean deleteTag(long id) {
+	public boolean deleteTag(final long id) {
 		return this.tagRepo.delete(id);
 	}
 
@@ -40,16 +44,33 @@ public class ApiHandler {
 		return this.attractionRepo.getAll();
 	}
 
-	public Attraction getAttraction(long id) {
-		return this.attractionRepo.get(id);
+	public Attraction getAttraction(final long id) {
+		final Attraction attraction = this.attractionRepo.get(id);
+
+		final List<Tag> attractionTags = this.getAttractionTags(id);
+		attraction.setTags(attractionTags);
+
+		return attraction;
 	}
 
-	public Attraction createAttraction(Attraction requestedAttraction) {
-		long newAttractionId = this.attractionRepo.create(requestedAttraction.getName(), requestedAttraction.getDescription());
+	public Attraction createAttraction(final Attraction requestedAttraction) {
+		final long newAttractionId = this.attractionRepo.create(requestedAttraction.getName(), requestedAttraction.getDescription());
 		return this.attractionRepo.get(newAttractionId);
 	}
 
-	public boolean deleteAttraction(long id) {
+	public boolean deleteAttraction(final long id) {
 		return this.attractionRepo.delete(id);
+	}
+
+
+	public List<Tag> getAttractionTags(final long attractionId) {
+		final List<Long> tagsFromAttraction = this.attractionTagRepo.getAttractionTagsForAttraction(attractionId);
+		return tagsFromAttraction.stream().map(this::getTag).collect(Collectors.toList());
+	}
+
+	public List<Tag> setAttractionTags(final List<Long> tagIds, final long attractionId) {
+		this.attractionTagRepo.removeAttractionTagForAttraction(attractionId);
+		tagIds.forEach(tagId -> this.attractionTagRepo.createAttractionTagForAttraction(tagId, attractionId));
+		return this.getAttractionTags(attractionId);
 	}
 }

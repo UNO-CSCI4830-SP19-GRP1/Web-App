@@ -107,3 +107,68 @@ databaseChangeLog:
               - column:
                   name: name
                   value: Tag 5
+  - changeSet:
+      id: 5
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 1
+              - column:
+                  name: description
+                  value: Description 1
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 2
+              - column:
+                  name: description
+                  value: Description 2
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 3
+              - column:
+                  name: description
+                  value: Description 3
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 4
+              - column:
+                  name: description
+                  value: Description 4
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 5
+              - column:
+                  name: description
+                  value: Description 5
+
+  - changeSet:
+      id: 6
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 1
+              - column:
+                  name: tag_id
+                  value: 1
