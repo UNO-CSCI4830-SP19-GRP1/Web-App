@@ -20,7 +20,7 @@ public class AttractionRepositoryDatabaseImpl implements AttractionRepository {
 	}
 
 	@Override
-	public Attraction get(final String id) {
+	public Attraction get(final long id) {
 		final String sql = "SELECT * FROM attraction WHERE id = :id";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();

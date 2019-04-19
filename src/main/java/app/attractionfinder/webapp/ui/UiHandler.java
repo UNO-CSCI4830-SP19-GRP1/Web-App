@@ -6,8 +6,9 @@ import app.attractionfinder.webapp.common.repository.AttractionRepository;
 import app.attractionfinder.webapp.common.repository.TagRepository;
 import app.attractionfinder.webapp.common.repository.AttractionTagRepository;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.LinkedHashSet;
 
 public class UiHandler {
 	private final TagRepository tagRepository;
@@ -24,15 +25,19 @@ public class UiHandler {
 		return this.tagRepository.getAll();
 	}
 
-	public List<Attraction> getMatches(List<Tag> tags){
-		List<Attraction> attractions = new ArrayList<Attraction>();
+	public Set<Attraction> getMatches(List<Long> tagIds){
+		Set<Attraction> attractions = new LinkedHashSet<>();
+		Set<Long> ids = new LinkedHashSet<>();
 
-		for (Tag t : tags)
+		for (long t : tagIds)
 		{
-			List<Attraction> matches = this.attractionTagRepository.getAllAttractions(t.getId());
-			for (Attraction a : matches)
+			List<Long> matches = this.attractionTagRepository.getAllAttractions(t);
+			for (Long l : matches)
 			{
-				attractions.add(a);
+				if(!ids.contains(l)) {
+					attractions.add(attractionRepository.get(l));
+					ids.add(l);
+				}
 			}
 		}
 		return attractions;

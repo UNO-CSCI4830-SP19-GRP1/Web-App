@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import java.util.List;
+import java.util.ArrayList;
 
 @Controller
 @RequestMapping(path = "/")
@@ -30,10 +31,15 @@ public class UiController {
 
 	// TODO: Might want "tag" to be required
 	@GetMapping("/results")
-	public ModelAndView results(@RequestParam(value = "tag", required = true) List<Tag> tags) {
+	public ModelAndView results(@RequestParam(value = "tag", required = true) String[] stringIds) {
 		final ModelAndView modelAndView = new ModelAndView("results");
-
-		modelAndView.addObject("matches", uiHandler.getMatches(tags));
+		List<Long> ids = new ArrayList<>();
+		for(String s: stringIds){
+			long id = Long.parseLong(s);
+			System.out.println("TEST: LONG "+id);
+			ids.add(id);
+		}
+		modelAndView.addObject("matches", uiHandler.getMatches(ids));
 
 		return modelAndView;
 	}

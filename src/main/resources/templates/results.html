@@ -9,7 +9,7 @@
     <ul>
         <li th:each="match : ${matches}">
             <!-- Not sure that this will do what we want; running into an issue where tags arent passed to the results page -->
-            <label id="attractionId" th:id="${attraction.id}" th:value="${attraction.id}" value="attractionId">Attraction Name</label>
+            <label th:id="${match.id}" th:value="${match.id}" th:text="${match.name}">Attraction Name</label>
         </li>
     </ul>
 </body>

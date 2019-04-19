@@ -5,7 +5,7 @@ import app.attractionfinder.webapp.common.model.Attraction;
 import java.util.List;
 
 public interface AttractionRepository {
-	Attraction get(String id);
+	Attraction get(long id);
 
 	List<Attraction> getAll();
 

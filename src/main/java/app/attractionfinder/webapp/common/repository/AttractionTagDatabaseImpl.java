@@ -11,6 +11,7 @@ import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class AttractionTagDatabaseImpl implements AttractionTagRepository {
@@ -22,23 +23,35 @@ public class AttractionTagDatabaseImpl implements AttractionTagRepository {
         this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
     }
 
-    public List<Tag> getAllTags(long attraction_id){
-        final String sql = "SELECT * FROM attraction_tag WHERE attraction_id = :attraction_id";
+    public List<Long> getAllTags(long attraction_id){
+        final String sql = "SELECT * FROM attraction_tag WHERE attraction_id = :attractionid";
 
         final MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("attraction_id", attraction_id);
+        parameters.addValue("attractionid", attraction_id);
 
-        return this.jdbcTemplate.query(sql, parameters ,new TagMapper());
+        List<Match> matches = this.jdbcTemplate.query(sql, parameters, new AttractionTagMapper());
+
+        List<Long> ids = new ArrayList<>();
+        for (Match m : matches) {
+            ids.add(m.getTag());
+        }
+        return ids;
     }
 
 
-    public List<Attraction> getAllAttractions(long tag_id) {
-        final String sql = "SELECT * FROM attraction_tag WHERE tag_id = :tag_id";
+    public List<Long> getAllAttractions(long tag_id) {
+        final String sql = "SELECT * FROM attraction_tag WHERE tag_id = :tagid";
 
         final MapSqlParameterSource parameters = new MapSqlParameterSource();
-        parameters.addValue("tag_id", tag_id);
+        parameters.addValue("tagid", tag_id);
 
-        return this.jdbcTemplate.query(sql, parameters ,new AttractionMapper());
+        List<Match> matches = this.jdbcTemplate.query(sql, parameters, new AttractionTagMapper());
+
+        List<Long> ids = new ArrayList<>();
+        for (Match m : matches) {
+            ids.add(m.getAttractionId());
+        }
+        return ids;
     }
 
     public List<Match> getAllMatches() {

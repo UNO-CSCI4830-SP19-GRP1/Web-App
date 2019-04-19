@@ -8,9 +8,9 @@ import java.util.List;
 
 public interface AttractionTagRepository {
 
-        List<Tag> getAllTags(long attraction_id);
+        List<Long> getAllTags(long attraction_id);
 
-        List<Attraction> getAllAttractions(long tag_id);
+        List<Long> getAllAttractions(long tag_id);
 
         List<Match> getAllMatches();
 
