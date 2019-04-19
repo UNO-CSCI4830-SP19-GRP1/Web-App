@@ -30,10 +30,10 @@ public class UiController {
 
 	// TODO: Might want "tag" to be required
 	@GetMapping("/results")
-	public ModelAndView results(@RequestParam(value = "tag", required = false) List<Tag> tags) {
+	public ModelAndView results(@RequestParam(value = "tag", required = true) List<Tag> tags) {
 		final ModelAndView modelAndView = new ModelAndView("results");
 
-		// TODO: Add models to view
+		modelAndView.addObject("matches", uiHandler.getMatches(tags));
 
 		return modelAndView;
 	}

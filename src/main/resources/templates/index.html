@@ -14,12 +14,12 @@
 </head>
 <body>
 <h1>Attraction Finder</h1>
-<form action="/result.html" id="tagSelection">
+<form action="/results" id="tagSelection">
     <nav>
         <ul id="tagList">
             <li th:each="tag : ${tags}"><!--/* This will loop over the tags list and create each tag */-->
             <input id="tagId" th:id="${tag.id}" th:value="${tag.id}" type="checkbox" value="tagId">
-            <label for="tagId" th:for="${tag.id}" th:text="${tag.name}">Tag Name</label>
+            <label for="tagId" th:for="${tag.id}" th:text="${tag.name}">Tag Name</label> <!--/* My understanding here is that the selected tags would be passed in the URL */-->
         </li>
         </ul>
     </nav>
