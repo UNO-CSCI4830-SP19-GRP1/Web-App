@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.ArrayList;
 
 @RestController
+@CrossOrigin
 @RequestMapping(path = "/api", produces = MediaType.APPLICATION_JSON_VALUE)
 public class ApiController {
 
