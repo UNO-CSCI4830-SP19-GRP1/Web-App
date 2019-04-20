@@ -1,7 +1,7 @@
 package app.attractionfinder.webapp.common.repository;
 
-import app.attractionfinder.webapp.common.mapper.TagMapper;
-import app.attractionfinder.webapp.common.model.Tag;
+import app.attractionfinder.webapp.common.mapper.AttractionMapper;
+import app.attractionfinder.webapp.common.model.Attraction;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.MapSqlParameterSource;
 import org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate;
@@ -12,54 +12,53 @@ import org.springframework.stereotype.Repository;
 import java.util.List;
 
 @Repository
-public class TagRepositoryDatabaseImpl implements TagRepository {
-
+public class AttractionRepositoryDatabaseImpl implements AttractionRepository {
 	private final NamedParameterJdbcTemplate jdbcTemplate;
 
-	public TagRepositoryDatabaseImpl(final JdbcTemplate jdbcTemplate) {
+	public AttractionRepositoryDatabaseImpl(final JdbcTemplate jdbcTemplate) {
 		this.jdbcTemplate = new NamedParameterJdbcTemplate(jdbcTemplate);
 	}
 
 	@Override
-	public Tag get(final long id) {
-		final String sql = "SELECT * FROM tag WHERE id = :id";
+	public Attraction get(final long id) {
+		final String sql = "SELECT * FROM attraction WHERE id = :id";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("id", id);
 
-		return this.jdbcTemplate.queryForObject(sql, parameters, new TagMapper());
+		return this.jdbcTemplate.queryForObject(sql, parameters, new AttractionMapper());
 	}
 
 	@Override
-	public List<Tag> getAll() {
-		final String sql = "SELECT * FROM tag";
+	public List<Attraction> getAll() {
+		final String sql = "SELECT * FROM attraction";
 
-		return this.jdbcTemplate.query(sql, new TagMapper());
+		return this.jdbcTemplate.query(sql, new AttractionMapper());
 	}
 
 	@Override
-	public long create(String name) {
-		final String sql = "INSERT INTO tag (name) VALUES (:name)";
+	public long create(String name, String description) {
+		String sql = "INSERT INTO attraction (name, description) VALUES (:name, :description)";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("name", name);
+		parameters.addValue("description", description);
 
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		this.jdbcTemplate.update(sql, parameters, keyHolder);
 
-		final Number newTagId = keyHolder.getKey();
+		final Number newAttractionId = keyHolder.getKey();
 
-		if(newTagId != null) {
-			return newTagId.longValue();
+		if(newAttractionId != null) {
+			return newAttractionId.longValue();
 		} else {
 			return -1;
 		}
 	}
 
-	@Override
 	public boolean delete(long id) {
-		String sql = "DELETE FROM tag WHERE id = :id";
+		String sql = "DELETE FROM attraction WHERE id = :id";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("id", id);

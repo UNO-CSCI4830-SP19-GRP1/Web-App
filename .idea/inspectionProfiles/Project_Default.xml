@@ -90,14 +90,13 @@
     <inspection_tool class="BigDecimalLegacyMethod" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="BlockMarkerComments" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="BooleanExpressionMayBeConditional" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="BooleanMethodNameMustStartWithQuestion" enabled="true" level="WARNING" enabled_by_default="true">
+    <inspection_tool class="BooleanMethodNameMustStartWithQuestion" enabled="false" level="WARNING" enabled_by_default="false">
       <option name="ignoreBooleanMethods" value="false" />
       <option name="ignoreInAnnotationInterface" value="true" />
       <option name="onlyWarnOnBaseMethods" value="true" />
       <option name="questionString" value="add,are,can,check,contains,could,endsWith,equals,has,is,matches,must,put,remove,shall,should,startsWith,was,were,will,would,test" />
     </inspection_tool>
     <inspection_tool class="BooleanParameter" enabled="true" level="WARNING" enabled_by_default="true" />
-    <inspection_tool class="BooleanVariableAlwaysNegated" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="BoundedWildcard" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="BreakStatementWithLabel" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="BusyWait" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -310,31 +309,13 @@
     <inspection_tool class="HtmlUnknownAttribute" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="8">
-            <item index="0" class="java.lang.String" itemvalue="th:action" />
+          <list size="6">
+            <item index="0" class="java.lang.String" itemvalue="th:each" />
             <item index="1" class="java.lang.String" itemvalue="th:id" />
             <item index="2" class="java.lang.String" itemvalue="th:value" />
-            <item index="3" class="java.lang.String" itemvalue="th:for" />
-            <item index="4" class="java.lang.String" itemvalue="th:text" />
-            <item index="5" class="java.lang.String" itemvalue="th:each" />
-            <item index="6" class="java.lang.String" itemvalue="th:if" />
-            <item index="7" class="java.lang.String" itemvalue="th:unless" />
-          </list>
-        </value>
-      </option>
-      <option name="myCustomValuesEnabled" value="true" />
-    </inspection_tool>
-    <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
-      <option name="myValues">
-        <value>
-          <list size="7">
-            <item index="0" class="java.lang.String" itemvalue="nobr" />
-            <item index="1" class="java.lang.String" itemvalue="noembed" />
-            <item index="2" class="java.lang.String" itemvalue="comment" />
-            <item index="3" class="java.lang.String" itemvalue="noscript" />
-            <item index="4" class="java.lang.String" itemvalue="embed" />
-            <item index="5" class="java.lang.String" itemvalue="script" />
-            <item index="6" class="java.lang.String" itemvalue="th:block" />
+            <item index="3" class="java.lang.String" itemvalue="th:text" />
+            <item index="4" class="java.lang.String" itemvalue="th:for" />
+            <item index="5" class="java.lang.String" itemvalue="th:action" />
           </list>
         </value>
       </option>
@@ -386,7 +367,7 @@
     <inspection_tool class="InterfaceNeverImplemented" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoreInterfacesThatOnlyDeclareConstants" value="false" />
     </inspection_tool>
-    <inspection_tool class="InterfaceWithOnlyOneDirectInheritor" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
+    <inspection_tool class="InterfaceWithOnlyOneDirectInheritor" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="IteratorHasNextCallsIteratorNext" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="IteratorNextDoesNotThrowNoSuchElementException" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="JDBCExecuteWithNonConstantString" enabled="true" level="WARNING" enabled_by_default="true" />
@@ -889,6 +870,7 @@
     <inspection_tool class="UnsecureRandomNumberGeneration" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UnusedLibrary" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UnusedProperty" enabled="false" level="WARNING" enabled_by_default="false" />
+    <inspection_tool class="UnusedReturnValue" enabled="true" level="WEAK WARNING" enabled_by_default="true" />
     <inspection_tool class="UpperCaseFieldNameNotConstant" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UseOfAWTPeerClass" enabled="true" level="WARNING" enabled_by_default="true" />
     <inspection_tool class="UseOfAnotherObjectsPrivateField" enabled="true" level="WARNING" enabled_by_default="true">
