@@ -172,3 +172,30 @@ databaseChangeLog:
               - column:
                   name: tag_id
                   value: 1
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 2
+              - column:
+                  name: tag_id
+                  value: 2
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 1
+              - column:
+                  name: tag_id
+                  value: 3
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 2
+              - column:
+                  name: tag_id
+                  value: 3
