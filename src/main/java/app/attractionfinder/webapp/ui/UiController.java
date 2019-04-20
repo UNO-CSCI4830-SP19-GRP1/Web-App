@@ -1,6 +1,5 @@
 package app.attractionfinder.webapp.ui;
 
-import app.attractionfinder.webapp.common.model.Tag;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,7 +10,6 @@ import java.util.List;
 
 @Controller
 @RequestMapping(path = "/")
-
 public class UiController {
 	private final UiHandler uiHandler;
 
@@ -23,17 +21,19 @@ public class UiController {
 	public ModelAndView indexTags() {
 		final ModelAndView modelAndView = new ModelAndView("index");
 
-		modelAndView.addObject("tags", uiHandler.getAllTags());
+		modelAndView.addObject("tags", this.uiHandler.getAllTags());
 
 		return modelAndView;
 	}
 
-	// TODO: Might want "tag" to be required
 	@GetMapping("/results")
-	public ModelAndView results(@RequestParam(value = "tag", required = false) List<Tag> tags) {
+	public ModelAndView results(@RequestParam(value = "tag", required = false) final List<Long> tagIds) {
 		final ModelAndView modelAndView = new ModelAndView("results");
 
-		// TODO: Add models to view
+		// TODO: Figure out what to do if no tags are given. Return to search page? Show a page with all attractions?
+		if(tagIds != null) {
+			modelAndView.addObject("matches", this.uiHandler.getMatches(tagIds));
+		}
 
 		return modelAndView;
 	}

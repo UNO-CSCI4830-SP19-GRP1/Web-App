@@ -8,4 +8,6 @@ public interface AttractionTagRepository {
 	long createAttractionTagForAttraction(long tagId, long attractionId);
 
 	boolean removeAttractionTagForAttraction(long attractionId);
+
+	List<Long> getAttractionsForTag(long tagId);
 }

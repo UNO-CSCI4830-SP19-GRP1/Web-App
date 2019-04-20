@@ -64,4 +64,14 @@ public class AttractionTagRepositoryDatabaseImpl implements AttractionTagReposit
 
 		return result == 1;
 	}
+
+	@Override
+	public List<Long> getAttractionsForTag(final long tagId) {
+		final String sql = "SELECT attraction_id FROM attraction_tag WHERE tag_id = :tag_id";
+
+		final MapSqlParameterSource parameters = new MapSqlParameterSource();
+		parameters.addValue("tag_id", tagId);
+
+		return this.jdbcTemplate.queryForList(sql, parameters, Long.class);
+	}
 }

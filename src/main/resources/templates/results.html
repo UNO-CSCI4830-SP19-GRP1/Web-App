@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta content="text/html; charset=UTF-8" http-equiv="Content-Type"/>
+	<title>Attraction Finder</title>
+</head>
+<body>
+<ul>
+	<li th:each="match : ${matches}">
+		<!-- Not sure that this will do what we want; running into an issue where tags aren't passed to the results page -->
+		<label th:id="${match.id}" th:text="${match.name}" th:value="${match.id}">Attraction Name</label>
+	</li>
+</ul>
+</body>
+</html>
