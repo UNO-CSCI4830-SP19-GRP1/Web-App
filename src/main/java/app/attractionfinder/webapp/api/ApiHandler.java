@@ -22,6 +22,11 @@ public class ApiHandler {
 	}
 
 
+	private void addTagsToAttraction(final Attraction attraction) {
+		attraction.setTags(this.getAttractionTags(attraction.getId()));
+	}
+
+
 	public List<Tag> getTags() {
 		return this.tagRepo.getAll();
 	}
@@ -41,14 +46,15 @@ public class ApiHandler {
 
 
 	public List<Attraction> getAttractions() {
-		return this.attractionRepo.getAll();
+		final List<Attraction> attractions = this.attractionRepo.getAll();
+		attractions.forEach(this::addTagsToAttraction);
+		return attractions;
 	}
 
 	public Attraction getAttraction(final long id) {
 		final Attraction attraction = this.attractionRepo.get(id);
 
-		final List<Tag> attractionTags = this.getAttractionTags(id);
-		attraction.setTags(attractionTags);
+		this.addTagsToAttraction(attraction);
 
 		return attraction;
 	}
