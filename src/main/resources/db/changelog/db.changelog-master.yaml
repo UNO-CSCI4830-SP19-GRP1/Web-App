@@ -157,7 +157,6 @@ databaseChangeLog:
               - column:
                   name: description
                   value: Description 5
-
   - changeSet:
       id: 6
       context: local
@@ -199,3 +198,14 @@ databaseChangeLog:
               - column:
                   name: tag_id
                   value: 3
+  - changeSet:
+      id: 7
+      author: David C. Bradley
+      changes:
+        - sql:
+            comment: Remove duplicate before adding unique constraint
+            dbms: postgresql
+            sql: DELETE FROM attraction_tag a USING attraction_tag b WHERE a.id > b.id AND a.attraction_id = b.attraction_id AND a.tag_id = b.tag_id;
+        - addUniqueConstraint:
+            tableName: attraction_tag
+            columnNames: attraction_id, tag_id
