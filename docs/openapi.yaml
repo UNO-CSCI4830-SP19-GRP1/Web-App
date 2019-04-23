@@ -1,0 +1,306 @@
+openapi: 3.0.0
+info:
+  title: Attraction Finder
+  description: Attraction Finder project for UNO Introduction to Software Engineering Class
+  version: 1.0.0
+  contact:
+    email: api@attractionfinder.app
+servers:
+  - url: 'https://attractionfinder.app/api'
+    description: Production Environment
+  - url: 'https://dev.attractionfinder.app/api'
+    description: Devlopment Environment
+paths:
+  /:
+    get:
+      summary: Get API overview
+      operationId: getApi
+      responses:
+        '200':
+          description: API Overview
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: Hello API
+  /tags:
+    get:
+      summary: Get tags
+      description: Get an array of tags
+      operationId: getTags
+      tags:
+        - Tag
+      responses:
+        '200':
+          description: Array of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          links:
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/0/id'
+    post:
+      summary: Create tag
+      description: Create a new tag with all its data
+      operationId: createTag
+      tags:
+        - Tag
+      requestBody:
+        $ref: '#/components/requestBodies/TagRequest'
+      responses:
+        '201':
+          description: Created tag details
+          headers:
+            Location:
+              schema:
+                $ref: '#/components/schemas/Tag/properties/url'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+          links:
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/id'
+  '/tags/{tag_id}':
+    parameters:
+      - $ref: '#/components/parameters/tagIdParam'
+    get:
+      summary: Get tag
+      operationId: getTag
+      tags:
+        - Tag
+      responses:
+        '200':
+          description: Tag details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tag'
+  /attractions:
+    get:
+      summary: Get attracations
+      description: Get an array of attractions
+      operationId: getAttracations
+      tags:
+        - Attraction
+      responses:
+        '200':
+          description: Array of attractions
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Attraction'
+          links:
+            GetAttraction:
+              operationId: getAttraction
+              parameters:
+                attraction_id: '$response.body#/0/id'
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/0/tags/0/id'
+    post:
+      summary: Create attraction
+      description: Create a new attraction with all its data
+      operationId: createAttracation
+      tags:
+        - Attraction
+      requestBody:
+        $ref: '#/components/requestBodies/AttractionRequest'
+      responses:
+        '201':
+          description: Created attraction details
+          headers:
+            Location:
+              schema:
+                $ref: '#/components/schemas/Attraction/properties/url'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attraction'
+          links:
+            GetAttraction:
+              operationId: getAttraction
+              parameters:
+                attraction_id: '$response.body#/id'
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/tags/0/id'
+  '/attractions/{attraction_id}':
+    parameters:
+      - $ref: '#/components/parameters/attractionIdParam'
+    get:
+      summary: Get attraction
+      operationId: getAttracation
+      tags:
+        - Attraction
+      responses:
+        '200':
+          description: Attraction details
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Attraction'
+          links:
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/tags/0/id'
+  '/attractions/{attraction_id}/tags':
+    parameters:
+      - $ref: '#/components/parameters/attractionIdParam'
+    get:
+      summary: Get tags of an attraction
+      operationId: getAttracationTags
+      tags:
+        - Attraction
+        - Tag
+      responses:
+        '200':
+          description: Array of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          links:
+            GetAttraction:
+              operationId: getAttraction
+              parameters:
+                attraction_id: $request.path.attraction_id
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$response.body#/0/id'
+    post:
+      summary: Add tags to attraction
+      description: Add one or more tags to an attraction
+      operationId: addAttracationTags
+      tags:
+        - Attraction
+        - Tag
+      requestBody:
+        $ref: '#/components/requestBodies/AttractionTagRequest'
+      responses:
+        '201':
+          description: Array of tags
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag'
+          links:
+            GetAttraction:
+              operationId: getAttraction
+              parameters:
+                attraction_id: $request.path.attraction_id
+            GetTag:
+              operationId: getTag
+              parameters:
+                tag_id: '$request.body#/ids/0'
+components:
+  parameters:
+    attractionIdParam:
+      name: attraction_id
+      description: ID of the attraction
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Attraction/properties/id'
+    tagIdParam:
+      name: tag_id
+      description: ID of the tag
+      in: path
+      required: true
+      schema:
+        $ref: '#/components/schemas/Tag/properties/id'
+  requestBodies:
+    TagRequest:
+      description: Tag information
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              name:
+                type: string
+                example: Food
+            required:
+              - name
+    AttractionRequest:
+      description: Attraction information
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              name:
+                type: string
+                example: Burger Shop
+            required:
+              - name
+    AttractionTagRequest:
+      description: Attraction tags information
+      required: true
+      content:
+        application/json:
+          schema:
+            properties:
+              ids:
+                description: IDs of exsisting tags
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tag/properties/id'
+            required:
+              - ids
+  schemas:
+    Tag:
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 12
+        name:
+          type: string
+          example: Food
+        url:
+          type: string
+          example: 'https://attractionfinder.app/api/tags/12'
+      required:
+        - id
+        - name
+    Attraction:
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 21
+        name:
+          type: string
+          example: Burger Shop
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/Tag'
+        url:
+          type: string
+          example: 'https://attractionfinder.app/api/attractions/21'
+      required:
+        - id
+        - name
+        - tags

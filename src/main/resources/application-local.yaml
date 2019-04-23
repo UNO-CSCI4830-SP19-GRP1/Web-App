@@ -1,0 +1,11 @@
+spring:
+  devtools:
+    add-properties: true
+  liquibase:
+    contexts: local
+logging:
+  level:
+    web: DEBUG
+server:
+  error:
+    include-stacktrace: ALWAYS

@@ -29,19 +29,19 @@ Travis CI automatically checks all commits to make sure they build successfully.
  It is useful to squash and rebase commits before merging to reduce the amount of impact on the git history. Here is a nice guide to follow: [Always Squash and Rebase your Git Commits](https://blog.carbonfive.com/2017/08/28/always-squash-and-rebase-your-git-commits/).
 
 ## Deploying Changes to the Development Server
-All commits to the [`development`] branch (that pass all tests) are automatically deployed to the development server hosted on [Heroku] within a couple of minutes. You can view current deployments in the [Environments] section of the GitHub repository. The [`development`] branch deploys to [`uno-csci4830-sp19-grp1-dev-app`](https://uno-csci4830-sp19-grp1-dev-app.herokuapp.com/).
+All commits to the [`development`] branch (that pass all tests) are automatically deployed to the development server hosted on [Heroku] within a couple of minutes. You can view current deployments in the [Environments] section of the GitHub repository. The [`development`] branch deploys to [`uno-csci4830-sp19-grp1-dev-app`](https://dev.attractionfinder.app/).
 
 ## Deploying Changes to the Production Server
 When a group of fixes and features on the [`development`] branch are ready to be deployed to the [`production`] branch, a [pull request between the two branches][prod-deploy] should be created. All pull requests to the [`production`] branch will need to be reviewed by the [@UNO-CSCI4830-SP19-GRP1/system-architects]. If a reviewer requests changes, these requested changes should be made (or disputed if necessary). Once all requested changes are made and tests pass, the pull request will be approved or denied. Approved pull requests will be added to the [`production`] branch. You can track the state of production deploys on the [Production Deploy project](https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/projects/1).
 
-All commits to the [`production`] branch (that pass all tests) are automatically deployed to the production server hosted on [Heroku] within a couple of minutes. You can view current deployments in the [Environments] section of the GitHub repository. The [`production`] branch deploys to [`uno-csci4830-sp19-grp1-web-app`](https://uno-csci4830-sp19-grp1-web-app.herokuapp.com/).
+All commits to the [`production`] branch (that pass all tests) are automatically deployed to the production server hosted on [Heroku] within a couple of minutes. You can view current deployments in the [Environments] section of the GitHub repository. The [`production`] branch deploys to [`uno-csci4830-sp19-grp1-web-app`](https://attractionfinder.app/).
 
 ## Deployment Information
 If automatic deploying to [Heroku] does not appear to be working, contact the [@UNO-CSCI4830-SP19-GRP1/system-architects].
 
 If you would like to test a pull request on [Heroku] before the request is approved, let the [@UNO-CSCI4830-SP19-GRP1/system-architects] know inside the pull request.
 
-[prod-deploy]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/compare/production...development?quick_pull=1&template=production_pull_request_template.md&title=Deploy:%20[ENTER%20TITLE%20HERE]
+[prod-deploy]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/compare/production...development?quick_pull=1&template=production_pull_request_template.md&title=Deploy:%20[ENTER%20TITLE%20HERE]&projects=UNO-CSCI4830-SP19-GRP1/Web-App/1
 [`development`]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/tree/development
 [`production`]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/tree/production
 [Environments]: https://github.com/UNO-CSCI4830-SP19-GRP1/Web-App/deployments

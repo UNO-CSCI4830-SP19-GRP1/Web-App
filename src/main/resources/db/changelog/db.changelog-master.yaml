@@ -1,0 +1,263 @@
+databaseChangeLog:
+  - changeSet:
+      id: 1
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: attraction
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(200)
+                  constraints:
+                    nullable: false
+              - column:
+                  name: description
+                  type: clob
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 2
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: name
+                  type: varchar(50)
+                  constraints:
+                    nullable: false
+  - changeSet:
+      id: 3
+      author: David C. Bradley
+      changes:
+        - createTable:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: id
+                  type: int
+                  autoIncrement: true
+                  constraints:
+                    primaryKey: true
+                    nullable: false
+              - column:
+                  name: attraction_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_attraction_fkey
+                    references: attraction(id)
+                    deleteCascade: true
+              - column:
+                  name: tag_id
+                  type: int
+                  constraints:
+                    nullable: false
+                    foreignKeyName: attraction_tag_tag_fkey
+                    references: tag(id)
+                    deleteCascade: true
+  - changeSet:
+      id: 4
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 1
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 2
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 3
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 4
+        - insert:
+            tableName: tag
+            columns:
+              - column:
+                  name: name
+                  value: Tag 5
+  - changeSet:
+      id: 5
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 1
+              - column:
+                  name: description
+                  value: Description 1
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 2
+              - column:
+                  name: description
+                  value: Description 2
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 3
+              - column:
+                  name: description
+                  value: Description 3
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 4
+              - column:
+                  name: description
+                  value: Description 4
+        - insert:
+            tableName: attraction
+            columns:
+              - column:
+                  name: name
+                  value: Attraction 5
+              - column:
+                  name: description
+                  value: Description 5
+  - changeSet:
+      id: 6
+      context: local
+      author: David C. Bradley
+      changes:
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 1
+              - column:
+                  name: tag_id
+                  value: 1
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 2
+              - column:
+                  name: tag_id
+                  value: 2
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 1
+              - column:
+                  name: tag_id
+                  value: 3
+        - insert:
+            tableName: attraction_tag
+            columns:
+              - column:
+                  name: attraction_id
+                  value: 2
+              - column:
+                  name: tag_id
+                  value: 3
+  - changeSet:
+      id: 7
+      author: David C. Bradley
+      changes:
+        - sql:
+            comment: Remove duplicate before adding unique constraint
+            dbms: postgresql
+            sql: DELETE FROM attraction_tag a USING attraction_tag b WHERE a.id > b.id AND a.attraction_id = b.attraction_id AND a.tag_id = b.tag_id;
+        - addUniqueConstraint:
+            tableName: attraction_tag
+            columnNames: attraction_id, tag_id
+  - changeSet:
+      id: 8
+      author: David C. Bradley
+      changes:
+        - addColumn:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  type: varchar(200)
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 9
+      context: local
+      author: David C. Bradley
+      changes:
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 1
+            where: name = 'Attraction 1'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 2
+            where: name = 'Attraction 2'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 3
+            where: name = 'Attraction 3'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 4
+            where: name = 'Attraction 4'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 5
+            where: name = 'Attraction 5'

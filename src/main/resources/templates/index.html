@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+	<meta content="Omaha Attraction Finder" name="apple-mobile-web-app-title">
+	<meta content="Omaha Attraction Finder" name="application-name">
+	<meta content="#333333" name="msapplication-TileColor">
+	<meta content="/favicons/browserconfig.xml" name="msapplication-config">
+	<meta content="#333333" name="theme-color">
+
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto%7CTitillium+Web:700" rel="stylesheet">
+	<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+	<link href="/style.css" rel="stylesheet" type="text/css">
+
+	<link href="/favicons/apple-touch-icon.png" rel="apple-touch-icon" sizes="180x180">
+	<link href="/favicons/favicon-32x32.png" rel="icon" sizes="32x32" type="image/png">
+	<link href="/favicons/favicon-16x16.png" rel="icon" sizes="16x16" type="image/png">
+	<link href="/favicons/site.webmanifest" rel="manifest">
+	<link color="#333333" href="/favicons/safari-pinned-tab.svg" rel="mask-icon">
+	<link href="/favicon.ico" rel="shortcut icon">
+
+	<title>Omaha Attraction Finder</title>
+</head>
+<body>
+<header class="d-flex p-2 justify-content-center">
+	<h1 id="title"><a href="/">Omaha Attraction Finder</a></h1>
+</header>
+<nav class="navbar navbar-expand-sm navbar-dark p-0 bg-dark" id="navbar">
+	<ul class="navbar-nav flex-row flex-grow-1">
+		<li class="nav-item active d-inline-block mr-auto">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<!-- <li class="nav-item d-inline-block">
+			<a class="nav-link" href="/add">Add</a>
+		</li> -->
+		<li class="nav-item d-inline-block">
+			<a class="nav-link" href="/contact">Contact</a>
+		</li>
+		<!-- <li class="nav-item d-inline-block">
+			<a class="nav-link" href="/login">Login</a>
+		</li> -->
+	</ul>
+</nav>
+<main class="container pt-3 pb-3">
+	<h2>Find an Attraction</h2>
+	<p>Select tags to find local places in Omaha that meet your interests!</p>
+
+	<!-- Tag Selection -->
+	<form action="/results" class="border p-3 rounded bg-dark text-white" id="tag-selection">
+		<div class="form-group">
+			<label for="tag-select">Select Tags</label>
+			<select class="form-control" id="tag-select" multiple name="tag" required size="10">
+				<th:block th:each="tag : ${tags}">
+					<option th:text="${tag.name}" th:value="${tag.id}" value="tag1">Tag Name</option>
+				</th:block>
+			</select>
+		</div>
+		<button class="btn btn-primary" type="submit">Search</button>
+	</form>
+
+	<div class="carousel slide pt-3" data-ride="carousel" id="image-carousel">
+		<!-- indicators -->
+		<ol class="carousel-indicators">
+			<li class="active" data-slide-to="0" data-target="#image-carousel"></li>
+			<li data-slide-to="1" data-target="#image-carousel"></li>
+			<li data-slide-to="2" data-target="#image-carousel"></li>
+		</ol>
+
+		<!-- images -->
+		<div class="carousel-inner border rounded">
+			<div class="carousel-item active">
+				<img alt="Henry Doorly Zoo" class="d-block w-100" src="/images/zoo.jpg">
+			</div>
+			<div class="carousel-item">
+				<img alt="Spielbound" class="d-block w-100" src="/images/spielbound.jpg">
+			</div>
+			<div class="carousel-item">
+				<img alt="The Orpheum Theatre" class="d-block w-100" src="/images/orpheum.jpg">
+			</div>
+		</div>
+
+		<!-- Left and right controls -->
+		<a class="carousel-control-prev" data-slide="prev" href="#image-carousel" role="button">
+			<span aria-hidden="true" class="carousel-control-prev-icon"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" data-slide="next" href="#image-carousel" role="button">
+			<span aria-hidden="true" class="carousel-control-next-icon"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+</main>
+<script crossorigin="anonymous"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+</body>
+</html>

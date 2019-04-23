@@ -1,0 +1,49 @@
+.bg-dark {
+    background-color: #333!important;
+}
+
+.btn-primary {
+    color: #fff;
+    background-color: #bb1b1b!important;
+    border-color: #bb1b1b!important;
+}
+
+/* ------------------------- */
+
+body {
+    font-family: 'Roboto', sans-serif;
+}
+
+/* ------------------------- */
+
+header {
+    background-color: #222;
+    text-align: center;
+}
+
+header #title {
+    font-family: 'Titillium Web', 'Roboto', sans-serif;
+    font-weight: 700;
+    color: white;
+}
+
+header #title a {
+    color: inherit;
+}
+
+nav {
+    background-color: #333;
+}
+
+#navbar .nav-link {
+    color: white;
+    padding: 0.75em;
+}
+
+#navbar .nav-link:hover {
+    background-color: #666;
+}
+
+#navbar .navbar-nav .active>.nav-link {
+    background: #bb1b1b;
+}
