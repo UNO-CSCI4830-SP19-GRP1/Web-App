@@ -60,7 +60,8 @@ public class ApiHandler {
 	}
 
 	public Attraction createAttraction(final Attraction requestedAttraction) {
-		final long newAttractionId = this.attractionRepo.create(requestedAttraction.getName(), requestedAttraction.getDescription());
+		final long newAttractionId =
+				this.attractionRepo.create(requestedAttraction.getName(), requestedAttraction.getDescription(), requestedAttraction.getLocation());
 		return this.attractionRepo.get(newAttractionId);
 	}
 

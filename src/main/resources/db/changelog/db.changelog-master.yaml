@@ -209,3 +209,55 @@ databaseChangeLog:
         - addUniqueConstraint:
             tableName: attraction_tag
             columnNames: attraction_id, tag_id
+  - changeSet:
+      id: 8
+      author: David C. Bradley
+      changes:
+        - addColumn:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  type: varchar(200)
+                  constraints:
+                    nullable: true
+  - changeSet:
+      id: 9
+      context: local
+      author: David C. Bradley
+      changes:
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 1
+            where: name = 'Attraction 1'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 2
+            where: name = 'Attraction 2'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 3
+            where: name = 'Attraction 3'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 4
+            where: name = 'Attraction 4'
+        - update:
+            tableName: attraction
+            columns:
+              - column:
+                  name: location
+                  value: Location 5
+            where: name = 'Attraction 5'

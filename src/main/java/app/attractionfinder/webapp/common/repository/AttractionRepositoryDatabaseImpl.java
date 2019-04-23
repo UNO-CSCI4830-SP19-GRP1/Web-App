@@ -37,14 +37,15 @@ public class AttractionRepositoryDatabaseImpl implements AttractionRepository {
 	}
 
 	@Override
-	public long create(String name, String description) {
-		String sql = "INSERT INTO attraction (name, description) VALUES (:name, :description)";
+	public long create(final String name, final String description, final String location) {
+		final String sql = "INSERT INTO attraction (name, description, location) VALUES (:name, :description, :location)";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("name", name);
 		parameters.addValue("description", description);
+		parameters.addValue("location", location);
 
-		KeyHolder keyHolder = new GeneratedKeyHolder();
+		final KeyHolder keyHolder = new GeneratedKeyHolder();
 
 		this.jdbcTemplate.update(sql, parameters, keyHolder);
 
@@ -53,17 +54,17 @@ public class AttractionRepositoryDatabaseImpl implements AttractionRepository {
 		if(newAttractionId != null) {
 			return newAttractionId.longValue();
 		} else {
-			return -1;
+			return -1L;
 		}
 	}
 
-	public boolean delete(long id) {
-		String sql = "DELETE FROM attraction WHERE id = :id";
+	public boolean delete(final long id) {
+		final String sql = "DELETE FROM attraction WHERE id = :id";
 
 		final MapSqlParameterSource parameters = new MapSqlParameterSource();
 		parameters.addValue("id", id);
 
-		int result = this.jdbcTemplate.update(sql, parameters);
+		final int result = this.jdbcTemplate.update(sql, parameters);
 
 		return result == 1;
 	}

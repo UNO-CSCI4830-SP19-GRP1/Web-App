@@ -9,7 +9,7 @@ public interface AttractionRepository {
 
 	List<Attraction> getAll();
 
-	long create(String name, String description);
+	long create(String name, String description, String location);
 
 	boolean delete(long id);
 }

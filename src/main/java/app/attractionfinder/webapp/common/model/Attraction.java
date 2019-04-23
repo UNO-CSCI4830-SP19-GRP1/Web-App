@@ -8,6 +8,7 @@ public class Attraction {
 	private Long id;
 	private String name;
 	private String description;
+	private String location;
 	private List<? extends Tag> tags;
 
 
@@ -38,6 +39,15 @@ public class Attraction {
 	}
 
 
+	public String getLocation() {
+		return this.location;
+	}
+
+	public void setLocation(final String location) {
+		this.location = location;
+	}
+
+
 	public List<Tag> getTags() {
 		return Collections.unmodifiableList(this.tags); // You don't want to pass around mutable objects
 	}
@@ -49,6 +59,7 @@ public class Attraction {
 
 	@Override
 	public String toString() {
-		return "Attraction{" + "id=" + this.id + ", name='" + this.name + '\'' + ", description='" + this.description + '\'' + ", tags=" + this.tags + '}';
+		return "Attraction{" + "id=" + this.id + ", name='" + this.name + '\'' + ", description='" + this.description + '\'' + ", location='" + this.location +
+				'\'' + ", tags=" + this.tags + '}';
 	}
 }
