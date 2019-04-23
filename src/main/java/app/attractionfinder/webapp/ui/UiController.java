@@ -37,4 +37,11 @@ public class UiController {
 
 		return modelAndView;
 	}
+
+	@GetMapping("/contact")
+	public ModelAndView contact() {
+		final ModelAndView modelAndView = new ModelAndView("contact");
+
+		return modelAndView;
+	}
 }
