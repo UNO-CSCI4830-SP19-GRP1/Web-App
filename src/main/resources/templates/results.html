@@ -1,119 +1,58 @@
 <!DOCTYPE html>
-<html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-	<title>Results - Omaha Attraction Finder</title>	
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
- 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <style>
-        body {
-            margin: 0;
-            font-size: 5vh;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-		table {
-			border-collapse: collapse;
-		}
-		tr {
-			border-bottom: solid 2px grey;
-		}
-		tr:last-child {
-			border-bottom: none;
-		}
-		.attractionDescription {
-			padding-left: 1em;
-			padding-top: 1em;
-			font-size: 3vh;
-		}
-        .header {
-            background-color: #222;
-            padding: 8px;
-            text-align: center;
-			font-size: 30px;
-        }
-        #navbar {
-            overflow: hidden;
-            background-color: #333;
-        }
-        #navbar a {
-            float: left;
-            display: block;
-            color: #f2f2f2;
-            text-align: center;
-            padding: 8px 12px;
-            text-decoration: none;
-            font-size: 17px;
-        }
-        #navbar a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-        #navbar a.active {
-            background-color: darkred;
-            color: white;
-        }
-        #navbar a.right {
-            float: right;
-        }
-	#navbar a.left {
-            text-decoration: none;
-            font-size: 17px;
-	    padding: 8px 12px;
-        }
-        .content {
-            padding: 16px;
-        }
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-        }   
-        .sticky + .content {
-            padding-top: 60px;
-        }
-	</style>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1, shrink-to-fit=no" name="viewport">
+
+	<link href="https://fonts.googleapis.com/css?family=Roboto|Titillium+Web:700" rel="stylesheet">
+	<link crossorigin="anonymous" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+		  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" rel="stylesheet">
+	<link href="style.css" rel="stylesheet" type="text/css">
+
+	<title>Results - Omaha Attraction Finder</title>
 </head>
 
 <body>
+<header class="d-flex p-2 justify-content-center">
+	<h1 id="title"><a href="/">Omaha Attraction Finder</a></h1>
+</header>
+<nav class="navbar navbar-expand-sm navbar-dark p-0 bg-dark" id="navbar">
+	<ul class="navbar-nav flex-row flex-grow-1">
+		<li class="nav-item d-inline-block mr-auto">
+			<a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
+		</li>
+		<!-- <li class="nav-item d-inline-block">
+			<a class="nav-link" href="/add">Add</a>
+		</li> -->
+		<li class="nav-item d-inline-block">
+			<a class="nav-link" href="/contact">Contact</a>
+		</li>
+		<!-- <li class="nav-item d-inline-block">
+			<a class="nav-link" href="/login">Login</a>
+		</li> -->
+	</ul>
+</nav>
 
-    <div class="header">
-        <h1 style="color:white;">Omaha Attraction Finder</h1>
-    </div>
-	
-    <div id="navbar">
-		<a class="left" href="/">Home</a>
-		<a class="right" href="/contact">Contact</a>
-		<!--<a class="right" href="/edit">Edit</a>
-		<a class="right" href="/add">Add</a>
-		<a class="right" href="#">Login</a>-->
-    </div>
+<main class="container pt-3 pb-3">
+	<table class="table" id="attraction-list">
+		<tbody>
+		<tr th:each="match : ${matches}">
+			<th scope="row" th:text="${match.name}">Attraction Name
+			</td>
+			<td class="attractionDescription" th:text="${match.description}">Attraction Description</td>
+		</tr>
+		</tbody>
+	</table>
+</main>
 
-    <div class="content">		
-		<table id="AttractionList">
-			<tr th:each="match : ${matches}">
-				<td th:text="${match.name}">Attraction Name</td>
-				<td th:text="${match.description}" class="attractionDescription">Attraction Description</td>
-			</tr>
-		</table>
-    </div>
-	
-    <script>
-        window.onscroll = function() {
-            stickyFunction()
-        };
-		
-        var navbar = document.getElementById("navbar");
-        var sticky = navbar.offsetTop;
-
-        function stickyFunction() {
-            if (window.pageYOffset >= sticky) {
-                navbar.classList.add("sticky")
-            } else {
-                navbar.classList.remove("sticky");
-            }
-        }
-    </script>
-
+<script crossorigin="anonymous"
+		integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+		src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+		src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script crossorigin="anonymous"
+		integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+		src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 </body>
-
 </html>
